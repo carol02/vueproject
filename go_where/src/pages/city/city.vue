@@ -3,11 +3,14 @@
     <city-header></city-header>
     <div ref="wrapper" class="wrapper">
       <div class="content">
-        <city-list :hotCities="hotCities" :city="city"></city-list>
-        <city-cts :cities="cities" ref="citys"></city-cts>
+        <div v-if="!!search">
+          <city-list :hotCities="hotCities" :city="city"></city-list>
+          <city-cts :cities="cities" ref="citys"></city-cts>
+        </div>
+        <city-search @handleSearch="handleSearch" v-else></city-search>
       </div>
     </div>
-    <city-letters :cities="cities" @toList="handleClick"></city-letters>
+    <city-letters :cities="cities" @toList="handleClick" v-if="!!search"></city-letters>
   </div>
 </template>
 <script>
@@ -15,14 +18,20 @@ import CityHeader from './cpmponents/Header'
 import CityList from './cpmponents/List'
 import CityCts from './cpmponents/Citiys'
 import CityLetters from './cpmponents/Letters'
+import CitySearch from './cpmponents/Search'
 import BScroll from 'better-scroll'
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 export default {
   components: {
     CityHeader,
     CityList,
     CityCts,
-    CityLetters
+    CityLetters,
+    CitySearch
+  },
+  computed: {
+    ...mapGetters(['search'])
   },
   data () {
     return {
@@ -45,6 +54,9 @@ export default {
     handleClick (key) {
       const list = this.$refs.citys.$refs[key][0]
       this.scroll.scrollToElement(list)
+    },
+    handleSearch (val) {
+      console.log(1)
     }
   },
   mounted () {

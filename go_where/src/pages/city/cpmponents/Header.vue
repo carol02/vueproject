@@ -4,11 +4,25 @@
       <span class="iconfont" @click="goIndex">&#xe624;</span>
       <h5>城市选择</h5>
     </div>
-    <input type="text" placeholder="请输入城市名或拼音"/>
+    <input type="text" placeholder="请输入城市名或拼音" v-model="searchValue"/>
   </header>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
+  data () {
+    return {
+      searchValue: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['search'])
+  },
+  watch: {
+    searchValue: function (val) {
+      this.$emit('handleSearch', val)
+    }
+  },
   methods: {
     goIndex () {
       this.$router.push('/')
