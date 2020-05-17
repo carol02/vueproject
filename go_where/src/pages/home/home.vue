@@ -43,7 +43,6 @@ export default {
       this.recommendList = data.recommendList
       this.swiperList = data.swiperList
       this.weekendList = data.weekendList
-      console.log(this.recommendList)
     }
   },
   mounted () {
