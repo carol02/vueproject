@@ -7,7 +7,7 @@
       <span class="iconfont">&#xe632;</span>
       请输入城市/景点/游玩主题
     </div>
-    <div class="right">
+    <div class="right" @click="goCity">
       三亚
       <span class="iconfont">&#xe64a;</span>
     </div>
@@ -15,7 +15,14 @@
 </template>
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  methods: {
+    goCity () {
+      this.$router.push({
+        path: '/city'
+      })
+    }
+  }
 }
 </script>
 <style lang="stylus" scope>
