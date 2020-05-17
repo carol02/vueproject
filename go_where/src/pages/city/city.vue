@@ -7,19 +7,22 @@
         <city-cts :cities="cities"></city-cts>
       </div>
     </div>
+    <city-letters :cities="cities"></city-letters>
   </div>
 </template>
 <script>
 import CityHeader from './cpmponents/Header'
 import CityList from './cpmponents/List'
 import CityCts from './cpmponents/Citiys'
+import CityLetters from './cpmponents/Letters'
 import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
   components: {
     CityHeader,
     CityList,
-    CityCts
+    CityCts,
+    CityLetters
   },
   data () {
     return {
@@ -37,7 +40,6 @@ export default {
       this.city = data.city
       this.hotCities = data.hotCities
       this.cities = data.cities
-      console.log(this.cities)
     }
   },
   mounted () {
