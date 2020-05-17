@@ -10,5 +10,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus">
+body
+  font-size 30px
+  color #333
 </style>
