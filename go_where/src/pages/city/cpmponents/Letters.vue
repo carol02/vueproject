@@ -1,12 +1,17 @@
 <template>
   <ul>
-    <li v-for="(item, key) in cities" :key="key">{{key}}</li>
+    <li v-for="(item, key) in cities" :key="key" @click="handleClick(key)">{{key}}</li>
   </ul>
 </template>
 <script>
 export default {
   props: {
     cities: Object
+  },
+  methods: {
+    handleClick (key) {
+      this.$emit('toList', key)
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(item, key) in cities" :key="key">
-      <h5>{{key}}</h5>
+      <h5 :ref="key">{{key}}</h5>
       <ul>
         <li v-for="its in item" :key="its.id" class="border-bottom">{{its.name}}</li>
       </ul>

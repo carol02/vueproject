@@ -4,10 +4,10 @@
     <div ref="wrapper" class="wrapper">
       <div class="content">
         <city-list :hotCities="hotCities" :city="city"></city-list>
-        <city-cts :cities="cities"></city-cts>
+        <city-cts :cities="cities" ref="citys"></city-cts>
       </div>
     </div>
-    <city-letters :cities="cities"></city-letters>
+    <city-letters :cities="cities" @toList="handleClick"></city-letters>
   </div>
 </template>
 <script>
@@ -28,7 +28,8 @@ export default {
     return {
       city: '',
       hotCities: [],
-      cities: {}
+      cities: {},
+      scroll: null
     }
   },
   methods: {
@@ -40,16 +41,20 @@ export default {
       this.city = data.city
       this.hotCities = data.hotCities
       this.cities = data.cities
+    },
+    handleClick (key) {
+      const list = this.$refs.citys.$refs[key][0]
+      this.scroll.scrollToElement(list)
     }
   },
   mounted () {
     this.getData()
-    const scroll = new BScroll(this.$refs.wrapper, {
+    this.scroll = new BScroll(this.$refs.wrapper, {
       click: true,
       probeType: 2
     })
     // 当dom发生变化时刷新
-    scroll.refresh()
+    this.scroll.refresh()
   }
 }
 </script>
