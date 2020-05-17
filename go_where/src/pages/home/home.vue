@@ -2,17 +2,20 @@
   <div>
     <home-header></home-header>
     <home-banner :bannerList="swiperList"></home-banner>
+    <home-navs :navsList='iconList'></home-navs>
   </div>
 </template>
 <script>
 import HomeHeader from './components/Header'
 import HomeBanner from './components/Banner'
+import HomeNavs from './components/Nav'
 import axios from 'axios'
 export default {
   name: 'Home',
   components: {
     HomeHeader,
-    HomeBanner
+    HomeBanner,
+    HomeNavs
   },
   data () {
     return {
